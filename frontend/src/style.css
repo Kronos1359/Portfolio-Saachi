@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  color: purple;
+  font-size: 40px;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+p {
+  color: darkslategray;
+  background-color: lightgray;
+  padding: 8px;
+  margin: 15px auto;
+}
+
+a {
+  color: teal;
+}
+
+.intro {
+  color: black;
+  background-color: bisque;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.skills {
+  background-color: lightgray;
+  margin: 10px;
+  padding: 10px;
+}
+
+.projects {
+  margin: 10px;
+  padding: 10px;
+}
+
+.project-card {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.repo-link {
+  background-color: #24292f;
+  color: white;
+}
+
+.live-link {
+  background-color: #2563eb;
+  color: white;
+}
+
+.project-card a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-color:aqua;
+  border-radius: 6px;
+  margin: 6px 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.project-card a:hover {
+  opacity: 0.85;
+}
+
+.project-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.contact {
+  margin: 10px;
+  padding: 10px;
+}
