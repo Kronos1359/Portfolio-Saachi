@@ -11,7 +11,35 @@ body {
 .container{
   max-width: 1000px;
   margin: 0 auto;
-  padding: 24px;
+  padding:0 24px 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #334155;
+}
+
+.navbar a:hover {
+  color: #2563eb;
 }
 
 h1 {

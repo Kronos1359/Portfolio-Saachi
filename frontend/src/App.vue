@@ -24,7 +24,14 @@
 <template>
   <main class="container">
 
-    <section class="about">
+    <nav class="navbar">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about" class="about">
       <h1>Saachi Varma Y</h1>
       <p class="intro">I'm a 3rd year B.E student majoring in Computer Science</p>
       <a href="https://github.com/Kronos1359">Visit my GitHub</a>
@@ -32,14 +39,14 @@
 
     <hr>
 
-    <section class="skills">
+    <section id="skills" class="skills">
       <h2>Skills</h2>
       <p> Python, FastAPI, Vue.js, HTML, CSS, JavaScript, Basics of C</p>
     </section>
 
     <hr>
 
-    <section class="projects">
+    <section id="projects" class="projects">
       <h2>Projects</h2>
 
       <div class="project-grid">
@@ -56,7 +63,7 @@
 
     <hr>
 
-    <section class="contact">
+    <section id="contact" class="contact">
       <h2>Contact me</h2>
       <p>
         <a href = "https://www.linkedin.com/in/saachi-y-231915351/">LinkedIn</a>
