@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import ProjectCard from './components/ProjectCard.vue'
 
   const projects = [
@@ -21,6 +21,23 @@
     }
   ]
 
+  const displayedName = ref('')
+
+  const name = "Saachi Varma Y"
+
+  onMounted(() => {
+    let index = 0
+
+    const timer = setInterval(() => {
+      displayedName.value += name[index]
+      index++
+
+      if (index >= name.length) {
+        clearInterval(timer)
+      }
+    }, 100)
+  })
+
   const form = ref({
     name: '',
     email: '',
@@ -28,14 +45,12 @@
   })
 
   const statusMessage = ref('')
+  const statusType = ref('')
   const isSubmitting = ref(false)
   
   async function submitContactFrom() {
     statusMessage.value = ''
     isSubmitting.value = true
-
-    console.log('Form data:', form.value)
-    console.log('Message:', form.value.message)
 
     try {
       const response = await fetch('http://127.0.0.1:8000/contact', {
@@ -49,11 +64,14 @@
       const data = await response.json()
 
       if (!response.ok) {
-        statusMessage.value = 'Please check your details and try again.'
+        statusType.value = 'error'
+        statusMessage.value = 
+          data.detail || 'Your message could not be sent. Please try again.'
         return
       }
 
-      statusMessage.value = data.message
+      statusType.value = 'success'
+      statusMessage.value = 'Your message has been sent successfully!'
 
       form.value = {
         name: '',
@@ -61,6 +79,8 @@
         message: ''
       }
     } catch (error) {
+      console.error('Contact form submission failed:', error)
+      statusType.value = 'error'
       statusMessage.value =
         'Could not connect to the server. Please try again later.'
     } finally {
@@ -81,7 +101,9 @@
 
     <section id="about" class="about hero">
       <p class="hero-greeting">HELLO, I'M</p>
-      <h1>Saachi Varma Y</h1>
+      <h1>
+        {{ displayedName }}<span class="typing-cursor">|</span>
+      </h1>
       <h2>Computer Science Engineering Student</h2>
       <p class="hero-description">
         I build projects with Python, Vue.js, and cloud technologies
@@ -167,9 +189,26 @@
         </button>
       </form>
 
-      <p v-if="statusMessage" role="status">
-        {{ statusMessage }}
-      </p>
+      <Transition name="toast">
+        <div
+          v-if="statusMessage"
+          class="toast"
+          :class="statusType"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="toast-message">{{ statusMessage }}</span>
+
+          <button
+            type="button"
+            class="toast-close"
+            aria-label="Close notification"
+            @click="statusMessage = ''"
+          >
+            x
+          </button>
+        </div>
+      </Transition>
 
       <p>
         Or find me on
