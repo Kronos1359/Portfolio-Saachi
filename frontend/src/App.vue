@@ -31,10 +31,26 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <section id="about" class="about">
+    <section id="about" class="about hero">
+      <p class="hero-greeting">HELLO, I'M</p>
       <h1>Saachi Varma Y</h1>
-      <p class="intro">I'm a 3rd year B.E student majoring in Computer Science</p>
-      <a href="https://github.com/Kronos1359">Visit my GitHub</a>
+      <h2>Computer Science Engineering Student</h2>
+      <p class="hero-description">
+        I build projects with Python, Vue.js, and cloud technologies
+        while exploring software development and AI.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="hero-button">View My Projects</a>
+        <a 
+          href="https://github.com/Kronos1359"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hero-button secondary-button"
+          >
+          GitHub Profile
+        </a>
+      </div>
     </section>
 
     <hr>
@@ -64,9 +80,47 @@
     <hr>
 
     <section id="contact" class="contact">
-      <h2>Contact me</h2>
+      <h2>Get in Touch</h2>
+      <p>Have a question or want to work together? Send me a message.</p>
+      
+      <form class="contact-form" @submit.prevent>
+        <label for="name">Your name</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Enter your name"
+          required
+        />
+
+        <label for="email">Your email</label>
+        <input
+         id="email"
+         type="email"
+         placeholder="you@example.com"
+         required
+        />
+
+        <label for="message">Your message</label>
+        <textarea
+          id="message"
+          rows="5"
+          placeholder="Write your message here..."
+          required
+        ></textarea>
+
+        <button type="submit" class="hero-button">
+          Send Message
+        </button>
+      </form>
+
       <p>
-        <a href = "https://www.linkedin.com/in/saachi-y-231915351/">LinkedIn</a>
+        Or find me on
+        <a
+          href = "https://www.linkedin.com/in/saachi-y-231915351/"
+          target="_blank"
+          rel="noopener noreferer">
+          LinkedIn
+        </a>
       </p>
     </section>
   </main>

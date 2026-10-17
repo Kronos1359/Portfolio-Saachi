@@ -8,8 +8,12 @@ body {
   text-align: center;
 }
 
+hr {
+  width: 100%;
+}
+
 .container{
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
   padding:0 24px 24px;
 }
@@ -21,9 +25,9 @@ html {
 .navbar {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 50px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -57,14 +61,71 @@ p {
 }
 
 a {
-  color: teal;
+  color: blue;
+  text-decoration: none;
+
 }
 
-.intro {
-  color: black;
-  background-color: bisque;
-  font-size: 18px;
-  line-height: 1.6;
+a:hover {
+  color:aqua;
+}
+
+.hero {
+  padding: 64px 16px;
+}
+
+.hero-greeting {
+  background: none;
+  color:#2563eb;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: 0;
+}
+
+.hero h1 {
+  color: #0f172a;
+  font-size: 48px;
+  margin: 12px auto;
+}
+
+.hero h2 {
+  color: #64748b;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.hero-description {
+  background: none;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.secondary-button {
+  background-color: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.hero-button:hover {
+  opacity: 0.85;
 }
 
 .skills {
@@ -127,3 +188,51 @@ a {
   margin: 10px;
   padding: 10px;
 }
+
+.contact-form {
+  max-width: 550px;
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: #334155;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  .navbar {
+    gap: 12px;
+  }
+
+  .container {
+    padding: 0 12px 24px;
+  }
+}
+
