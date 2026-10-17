@@ -1,4 +1,5 @@
 <script setup>
+  import { ref } from 'vue'
   import ProjectCard from './components/ProjectCard.vue'
 
   const projects = [
@@ -19,6 +20,53 @@
       liveUrl: "https://main.d1i3uzv1bh4iey.amplifyapp.com/"
     }
   ]
+
+  const form = ref({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  const statusMessage = ref('')
+  const isSubmitting = ref(false)
+  
+  async function submitContactFrom() {
+    statusMessage.value = ''
+    isSubmitting.value = true
+
+    console.log('Form data:', form.value)
+    console.log('Message:', form.value.message)
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form.value)
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        statusMessage.value = 'Please check your details and try again.'
+        return
+      }
+
+      statusMessage.value = data.message
+
+      form.value = {
+        name: '',
+        email: '',
+        message: ''
+      }
+    } catch (error) {
+      statusMessage.value =
+        'Could not connect to the server. Please try again later.'
+    } finally {
+        isSubmitting.value = false
+    }
+  }
 </script>
 
 <template>
@@ -83,10 +131,11 @@
       <h2>Get in Touch</h2>
       <p>Have a question or want to work together? Send me a message.</p>
       
-      <form class="contact-form" @submit.prevent>
+      <form class="contact-form" @submit.prevent="submitContactFrom">
         <label for="name">Your name</label>
         <input
           id="name"
+          v-model="form.name"
           type="text"
           placeholder="Enter your name"
           required
@@ -95,6 +144,7 @@
         <label for="email">Your email</label>
         <input
          id="email"
+         v-model="form.email"
          type="email"
          placeholder="you@example.com"
          required
@@ -103,15 +153,23 @@
         <label for="message">Your message</label>
         <textarea
           id="message"
-          rows="5"
+          v-model="form.message"
+          rows="4"
           placeholder="Write your message here..."
           required
         ></textarea>
 
-        <button type="submit" class="hero-button">
-          Send Message
+        <button
+          type="submit"
+          class="hero-button"
+          :disabled="isSubmitting">
+          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
         </button>
       </form>
+
+      <p v-if="statusMessage" role="status">
+        {{ statusMessage }}
+      </p>
 
       <p>
         Or find me on
