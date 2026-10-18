@@ -2,10 +2,13 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   text-align: center;
+  padding: 0;
+  width: 100%;
 }
 
 hr {
@@ -14,8 +17,8 @@ hr {
 
 .container{
   max-width: 100%;
-  margin: 0 auto;
-  padding:0;
+  margin: 10 auto;
+  padding: 0;
 }
 
 html {
@@ -73,7 +76,11 @@ a:hover {
 }
 
 .hero {
-  padding: 64px 64px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+  gap: 24px;
+  padding: 64px;
   text-align: left;
 }
 
@@ -87,7 +94,7 @@ a:hover {
 
 .hero h1 {
   color: #0f172a;
-  font-size: 48px;
+  font-size: clamp(30px, 3.5vw, 48px);
   margin: 12px auto;
 }
 
@@ -129,6 +136,73 @@ a:hover {
 
 .hero-button:hover {
   opacity: 0.85;
+}
+
+.hero-animation {
+  width: 100%;
+  min-height: 300px;
+}
+
+.orbit {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 50%;
+  border: 1px solid #93c5fd;
+  border-radius: 50%;
+}
+
+.ring-one {
+  width: 220px;
+  height: 140px;
+  transform: translate(-50%, -50%);
+}
+
+.ring-two {
+  width: 140px;
+  height: 220px;
+  transform: translate(-50%, -50%) rotate(35deg);
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #2563eb;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2563eb;
+}
+
+.dot-one {
+  top: 50%;
+  left: 30px;
+}
+
+.dot-two {
+  top: 50px;
+  right: 65px;
+  background-color: #60a5fa;
+}
+
+.dot-three {
+  bottom: 50px;
+  right: 65px;
 }
 
 .skills {
@@ -411,5 +485,366 @@ a:hover {
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-animation {
+    min-height: 220px;
+  }
+}
+
+
+/* ===== Hero Orbit Animation ===== */
+
+.orbit-scene {
+  position: relative;
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  isolation: isolate;
+}
+
+/* Soft glow behind the animation */
+.orbit-glow {
+  position: absolute;
+  width: 42%;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: #dbeafe;
+  filter: blur(28px);
+  transform: translate(-50%, -50%);
+  opacity: 0.75;
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Each path rotates independently around the center */
+.orbit-path {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid #bfdbfe;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit-rotate linear infinite;
+}
+
+/* Horizontal orbit */
+.orbit-path-one {
+  width: 86%;
+  height: 48%;
+  animation-duration: 14s;
+}
+
+/* Tilted orbit */
+.orbit-path-two {
+  width: 70%;
+  height: 70%;
+  border-color: #93c5fd;
+  animation-duration: 18s;
+  animation-direction: reverse;
+}
+
+/* Narrow vertical orbit */
+.orbit-path-three {
+  width: 42%;
+  height: 88%;
+  border-color: #dbeafe;
+  animation-duration: 22s;
+}
+
+/* Planets stay on their own orbital paths */
+.orbit-planet {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 14px #93c5fd;
+  transform: translateY(-50%);
+}
+
+.planet-two {
+  width: 9px;
+  height: 9px;
+  background: #60a5fa;
+}
+
+.planet-three {
+  width: 7px;
+  height: 7px;
+  background: #1d4ed8;
+}
+
+/* Center element */
+.orbit-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  aspect-ratio: 1;
+  border: 1px solid #93c5fd;
+  border-radius: 50%;
+  background: rgb(239 246 255 / 85%);
+  box-shadow: 0 0 35px rgb(96 165 250 / 20%);
+  transform: translate(-50%, -50%);
+  animation: core-float 4s ease-in-out infinite;
+}
+
+.orbit-core-inner {
+  width: 24px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #60a5fa, #1d4ed8);
+  box-shadow: 0 0 18px rgb(37 99 235 / 40%);
+}
+
+/* Small decorative stars */
+.orbit-star {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #93c5fd;
+  animation: star-twinkle 3s ease-in-out infinite;
+}
+
+.star-one {
+  top: 17%;
+  left: 24%;
+}
+
+.star-two {
+  top: 25%;
+  right: 12%;
+  animation-delay: -1s;
+}
+
+.star-three {
+  bottom: 18%;
+  left: 19%;
+  width: 4px;
+  height: 4px;
+  animation-delay: -2s;
+}
+
+.star-four {
+  right: 20%;
+  bottom: 13%;
+  width: 6px;
+  height: 6px;
+  animation-delay: -0.5s;
+}
+
+/* Animation keyframes */
+@keyframes orbit-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes core-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-path,
+  .orbit-core,
+  .orbit-glow,
+  .orbit-star {
+    animation: none;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+/* ===== Mobile layout fixes ===== */
+
+@media (max-width: 600px) {
+  /* Keep the navbar within the screen */
+  .navbar {
+    gap: 12px;
+    padding: 12px 8px;
+    justify-content: center;
+  }
+
+  .navbar a {
+    font-size: 13px;
+  }
+
+  /* Give the hero text more room */
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 36px 20px;
+    text-align: left;
+  }
+
+  .hero-content {
+    min-width: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(22px, 7vw, 30px);
+    white-space: nowrap;
+    padding: 0;
+    margin: 12px 0;
+  }
+
+  .hero h2 {
+    font-size: 18px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* Scale down the animation */
+  .hero-animation {
+    min-height: 0;
+  }
+
+  .orbit-scene {
+    width: min(100%, 250px);
+  }
+
+  /* Make skills readable in a single column */
+  .skills {
+    margin: 0;
+    padding: 36px 20px;
+  }
+
+  .skills-heading h2 {
+    font-size: 26px;
+  }
+
+  .skills-description {
+    font-size: 14px;
+  }
+
+  .skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .skill-category {
+    min-width: 0;
+    padding: 20px 16px;
+    margin-top: 0;
+  }
+
+  .skill-list {
+    gap: 8px;
+  }
+
+  .skill-item {
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+
+  /* Reduce excess space around project cards */
+  .projects {
+    margin: 0;
+    padding: 24px 16px;
+  }
+
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-card {
+    min-width: 0;
+    padding: 18px;
+  }
+
+  /* Prevent form sections from feeling cramped */
+  .contact {
+    margin: 0;
+    padding: 24px 16px;
+  }
+}
+
+/* Extra-small screens */
+@media (max-width: 380px) {
+  .hero {
+    padding: 28px 16px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .navbar {
+    gap: 10px;
+    padding: 12px 6px;
+  }
+
+  .navbar a {
+    font-size: 12px;
+  }
+
+  .skills {
+    padding: 28px 16px;
   }
 }

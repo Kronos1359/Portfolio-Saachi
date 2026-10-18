@@ -125,11 +125,36 @@
       </div>
 
       <div class="hero-animation">
-        
+        <div class="orbit-scene">
+          <!-- Soft background glow -->
+          <div class="orbit-glow"></div>
+
+          <!-- Rotating orbital paths -->
+          <div class="orbit-path orbit-path-one">
+            <span class="orbit-planet planet-one"></span>
+          </div>
+
+          <div class="orbit-path orbit-path-two">
+            <span class="orbit-planet planet-two"></span>
+          </div>
+
+          <div class="orbit-path orbit-path-three">
+            <span class="orbit-planet planet-three"></span>
+          </div>
+
+          <!-- Center element -->
+          <div class="orbit-core">
+            <div class="orbit-core-inner"></div>
+          </div>
+
+          <!-- Decorative background dots -->
+          <span class="orbit-star star-one"></span>
+          <span class="orbit-star star-two"></span>
+          <span class="orbit-star star-three"></span>
+          <span class="orbit-star star-four"></span>
+        </div>
       </div>
     </section>
-
-    <hr>
 
     <section id="skills" class="skills">
       <div class="skill-heading">
