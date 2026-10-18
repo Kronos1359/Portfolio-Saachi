@@ -73,7 +73,7 @@ a:hover {
 }
 
 .hero {
-  padding: 64px 16px;
+  padding: 64px 64px;
   text-align: left;
 }
 
@@ -101,11 +101,12 @@ a:hover {
   background: none;
   max-width: 600px;
   line-height: 1.7;
+  margin-left: 0;
 }
 
 .hero-actions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
@@ -132,7 +133,86 @@ a:hover {
 
 .skills {
   margin: 10px;
-  padding: 10px;
+  padding: 64px;
+  text-align: left;
+}
+
+.skills-heading {
+  margin-bottom: 32px;
+}
+
+.skills-eyebrow {
+  background: none;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.skills-heading h2 {
+  color: #0f172a;
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.skills-description {
+  background: none;
+  color: #64748b;
+  padding: 0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 230px));
+  gap: 20px;
+}
+
+.skill-category {
+  padding: 24px;
+  margin-top: 10px;
+  border: 1px solid #b1c5de;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-3px);
+  border-color: #2563eb;
+}
+
+.skill-category h3 {
+  color: #0f172a;
+  font-size: 17px;
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-item {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #8f97ce;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+  border-color: #2563eb;
 }
 
 .projects {
@@ -141,7 +221,7 @@ a:hover {
 }
 
 .project-card {
-  background-color: lightgray;
+  background-color: lightskyblue;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 24px;
@@ -241,7 +321,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 16px;
-  width: min(400px, clac(100vw - 32px));
+  width: min(400px, calc(100vw - 32px));
   padding: 16px 18px;
   border-radius: 10px;
   background-color: white;

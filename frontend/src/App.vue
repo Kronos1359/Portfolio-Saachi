@@ -35,7 +35,7 @@
       if (index >= name.length) {
         clearInterval(timer)
       }
-    }, 100)
+    }, 110)
   })
 
   const form = ref({
@@ -100,34 +100,72 @@
     </nav>
 
     <section id="about" class="about hero">
-      <p class="hero-greeting">HELLO, I'M</p>
-      <h1>
-        {{ displayedName }}<span class="typing-cursor">|</span>
-      </h1>
-      <h2>Computer Science Engineering Student</h2>
-      <p class="hero-description">
-        I build projects with Python, Vue.js, and cloud technologies
-        while exploring software development and AI.
-      </p>
+      <div class="hero-content">
+        <p class="hero-greeting">HELLO, I'M</p>
+        <h1>
+          {{ displayedName }}<span class="typing-cursor">|</span>
+        </h1>
+        <h2>Computer Science Engineering Student</h2>
+        <p class="hero-description">
+          I build projects with Python, Vue.js, and cloud technologies
+          while exploring software development and AI.
+        </p>
 
-      <div class="hero-actions">
-        <a href="#projects" class="hero-button">View My Projects</a>
-        <a 
-          href="https://github.com/Kronos1359"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hero-button secondary-button"
-          >
-          GitHub Profile
-        </a>
+        <div class="hero-actions">
+          <a href="#projects" class="hero-button">View My Projects</a>
+          <a 
+            href="https://github.com/Kronos1359"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-button secondary-button"
+            >
+            GitHub Profile
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-animation">
+        
       </div>
     </section>
 
     <hr>
 
     <section id="skills" class="skills">
-      <h2>Skills</h2>
-      <p> Python, FastAPI, Vue.js, HTML, CSS, JavaScript, Basics of C</p>
+      <div class="skill-heading">
+        <p class="skills-eyebrow">WHAT I WORK WITH</p>
+        <h2>Skills & Technologies</h2>
+        <p class="skills-description">
+          Technologies I've been learning and using to build projects.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="skill-list">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">Javascript</span>
+            <span class="skill-item">C (Basics)</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Frontend</h3>
+          <div class="skill-list">
+            <span class="skill-item">HTML</span>
+            <span class="skill-item">CSS</span>
+            <span class="skill-item">Vue.js</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Backend & Cloud</h3>
+          <div class="skill-list">
+            <span class="skill-item">FastAPI</span>
+            <span class="skill-item">AWS</span>
+            <span class="skill-item">Flask</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <hr>
