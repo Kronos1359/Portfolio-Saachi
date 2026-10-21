@@ -64,7 +64,7 @@ An e-commerce project built to explore product management, backend APIs, and clo
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_PORTFOLIO_REPOSITORY_URL>
+git clone https://github.com/Kronos1359/Portfolio-Saachi.git
 cd portfolio
 ```
 
