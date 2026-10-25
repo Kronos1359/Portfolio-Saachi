@@ -11,7 +11,8 @@
     {
       title: "AWS Notes app",
       description: "A cloud computing notes app that stores your notes and images.",
-      repoUrl: "https://github.com/Kronos1359/aws-notes-app"
+      repoUrl: "https://github.com/Kronos1359/aws-notes-app",
+      liveUrl: "https://aws-notes-app-nu.vercel.app/"
     },
     {
       title: "KronShop",
