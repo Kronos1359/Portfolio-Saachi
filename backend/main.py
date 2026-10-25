@@ -74,3 +74,7 @@ Message:
         )
 
     return {"message": "Your message was emailed successfully!"}
+
+
+from mangum import Mangum
+handler = Mangum(app)

@@ -3,11 +3,6 @@
 node_modules/
 dist/
 
-# Environment variables and secrets
-.env
-.env.*
-!.env.example
-backend/env
 
 # Python / FastAPI
 .venv/
@@ -24,3 +19,29 @@ htmlcov/
 .DS_Store
 Thumbs.db
   
+
+  
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+
+
+*.pyo
+*.pyd
+.Python
+ENV/
+
+# Generated AWS Lambda deployment package
+backend/lambda-package/
+backend/lambda-deployment.zip
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+
+# Local tooling and operating system files
+.vscode/
+.idea/
+

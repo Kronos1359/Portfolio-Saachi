@@ -1,65 +1,86 @@
 # Saachi Varma Y — Developer Portfolio
 
-A personal portfolio website showcasing my projects, technical skills, and journey as a Computer Science Engineering student. Built to bring my work together in one place and provide an easy way to connect with me.
+My personal developer portfolio, built to showcase my projects, technical skills, and learning journey as a Computer Science engineering student.
 
-**Live Website:** [portfolio-saachi.vercel.app](https://portfolio-saachi.vercel.app/)
+**Live website:** [portfolio-saachi.vercel.app](https://portfolio-saachi.vercel.app/)
 
 ## About
 
-I'm a third-year B.E. Computer Science Engineering student interested in software development, cloud technologies, and AI engineering. This portfolio is an ongoing project where I apply what I learn, experiment with new technologies, and showcase projects I've worked on.
+I'm a third-year B.E. Computer Science student interested in software development, cloud computing, and AI engineering. This portfolio brings together my projects, the technologies I work with, and a way to get in touch.
 
 ## Tech Stack
 
-**Frontend**
-- Vue.js
-- HTML5
-- CSS3
+### Frontend
+- Vue 3
 - JavaScript
+- HTML5 and CSS3
 - Vite
 
-**Backend**
+### Backend
 - Python
 - FastAPI
-- SMTP email integration for the contact form
+- Mangum — adapts FastAPI for AWS Lambda
 
-**Deployment**
+### Cloud and Deployment
+- AWS Lambda — serverless backend execution
+- Amazon API Gateway — HTTPS API endpoint
 - Vercel — frontend hosting
-- Render — backend hosting
+- Git and GitHub — version control
+
+### Contact Form
+The contact form sends messages through a FastAPI endpoint deployed on AWS Lambda. The backend uses Gmail SMTP, with credentials stored in Lambda environment variables.
 
 ## Featured Projects
 
 ### WeatherGPT
-A conversational AI-powered weather project focused on making weather information and forecasts more accessible.
+A conversational weather platform designed to make weather information more accessible, with a focus on forecasts, weather risk, and multilingual accessibility.
 
 - **Repository:** [WeatherGPT](https://github.com/Puja105/weathergpt)
 
 ### AWS Notes App
-A cloud-based notes application exploring AWS services, authentication, storage, and serverless backend integration.
+A cloud-based notes application built to explore authentication, storage, and serverless AWS services.
 
 - **Repository:** [AWS Notes App](https://github.com/Kronos1359/aws-notes-app)
 
 ### KronShop
-An e-commerce project built to explore product management, backend APIs, and cloud-based deployment.
+An e-commerce project exploring full-stack development and AWS deployment.
 
 - **Repository:** [KronShop](https://github.com/Kronos1359/kronshop-ecommerce)
-- **Live Demo:** [Open KronShop](https://main.d1i3uzv1bh4iey.amplifyapp.com/)
+- **Live application:** [Open KronShop](https://main.d1i3uzv1bh4iey.amplifyapp.com/)
 
-## Features
+## Architecture
 
-- Responsive design for desktop and mobile screens
-- Animated hero section
-- Dedicated sections for projects and technical skills
-- Links to project repositories and live demos
-- Contact form powered by a FastAPI backend
-- Email delivery for contact form submissions
-- Separate frontend and backend deployments
+The portfolio uses a separate frontend and backend.
+
+```text
+Visitor
+   |
+   v
+Vue 3 Frontend (Vercel)
+   |
+   | HTTPS POST /contact
+   v
+Amazon API Gateway
+   |
+   v
+AWS Lambda
+   |
+   v
+FastAPI + Mangum
+   |
+   v
+Gmail SMTP
+   |
+   v
+Contact email recipient
+```
 
 ## Run Locally
 
 ### Prerequisites
-
-- [Node.js](https://nodejs.org/)
-- [Python](https://www.python.org/)
+- Python 3.13
+- Node.js and npm
+- Git
 
 ### 1. Clone the repository
 
@@ -68,9 +89,7 @@ git clone https://github.com/Kronos1359/Portfolio-Saachi.git
 cd portfolio
 ```
 
-Replace the placeholder with the URL of this repository.
-
-### 2. Run the frontend
+### 2. Start the frontend
 
 ```bash
 cd frontend
@@ -78,22 +97,21 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite, usually `http://localhost:5173`.
+Vite will display the local development URL in the terminal.
 
-### 3. Run the backend
+### 3. Start the backend locally
 
-In a separate terminal:
+Open a separate terminal from the repository root:
 
 ```bash
 cd backend
-python -m venv venv
+py -3.13 -m venv .venv
 ```
 
-Activate the virtual environment.
+Activate the virtual environment on Windows:
 
-**Windows:**
 ```bash
-venv\Scripts\activate
+source .venv/Scripts/activate
 ```
 
 Install the dependencies:
@@ -102,47 +120,59 @@ Install the dependencies:
 pip install -r requirements.txt
 ```
 
-Create a `.env` file inside the `backend` directory with the following variables:
+Create a local `.env` file in the `backend/` directory with the following variables:
 
-```env
-SMTP_EMAIL=your_email@gmail.com
+```dotenv
+SMTP_EMAIL=your_sender_email
 SMTP_APP_PASSWORD=your_gmail_app_password
-CONTACT_RECEIVER=your_email@gmail.com
+CONTACT_RECEIVER=your_receiver_email
 ```
 
-Use a Gmail App Password where required, rather than your regular Gmail password. Keep `.env` private and never commit credentials to GitHub.
+Replace the example values with your own credentials. Never commit this file.
 
-Start the backend:
+Start the local API:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-The backend will usually be available at `http://127.0.0.1:8000`. Interactive API documentation is available at `http://127.0.0.1:8000/docs`.
+The FastAPI application should be available at `http://127.0.0.1:8000`.
 
-## Environment Configuration
+**Note:** The deployed frontend uses the AWS API Gateway endpoint. To test the contact form locally, configure your local frontend to call your local backend.
 
-The backend uses environment variables for email configuration. When deploying, configure these variables in the hosting provider's environment settings instead of committing them to the repository.
+## Environment Variables
 
-For local development, the frontend and backend must be configured to communicate with each other, and the backend's CORS settings must allow the frontend origin.
+| Variable | Purpose |
+|---|---|
+| `SMTP_EMAIL` | Gmail account used to send messages |
+| `SMTP_APP_PASSWORD` | Gmail App Password |
+| `CONTACT_RECEIVER` | Email address receiving contact messages |
+
+These variables are configured in AWS Lambda for production and in a private `.env` file for local development.
+
+## Deployment
+
+- **Frontend:** deployed on Vercel.
+- **Backend:** deployed on AWS Lambda using Mangum.
+- **API:** exposed through Amazon API Gateway.
+- **CORS:** configured to allow requests from the deployed portfolio origin.
+
+The Lambda deployment ZIP is generated locally and is not committed to the repository.
 
 ## What I'm Learning
 
-This project is helping me gain practical experience with:
+- Full-stack web development
+- REST APIs and backend development
+- Cloud deployment and serverless architecture
+- Python and JavaScript
+- AI and machine learning fundamentals
 
-- Building component-based interfaces using Vue.js
-- Styling responsive layouts with CSS
-- Designing and developing REST APIs with FastAPI
-- Integrating frontend forms with backend services
-- Handling environment variables and application configuration
-- Deploying applications using Vercel and Render
-- Managing projects with Git and GitHub
+## Connect
 
-## Connect With Me
-
+- **Portfolio:** [portfolio-saachi.vercel.app](https://portfolio-saachi.vercel.app/)
 - **GitHub:** [Kronos1359](https://github.com/Kronos1359)
 - **LinkedIn:** [Saachi Varma Y](https://www.linkedin.com/in/saachi-y-231915351/)
 
 ---
 
-*Built as part of my journey toward becoming a better software developer. Continuously learning, building, and improving.*
+Built as a personal project to practise development, deployment, and continuous improvement.
